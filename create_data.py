@@ -71,4 +71,8 @@ def create_db():
     add_order_products()
 
 
-create_db()
+try:
+    create_db()
+    print('Database created successfully')
+except Exception:
+    print('Error')
