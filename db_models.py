@@ -11,7 +11,7 @@ class Customer(db.Model):
     postcode = db.Column(db.Integer)
     email = db.Column(db.String(200), nullable=False, unique=True)
 
-    orders = db.relationship('Order', backref='customer')
+    orders = db.relationship('Order', backref='customer')  #  uselist=False if we need one-to-one
 
 
 order_product = db.Table(

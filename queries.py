@@ -97,3 +97,13 @@ def get_num_of_orders_per_client():
     print(result)
 
 # get_num_of_orders_per_client()
+
+
+def get_sum_of_orders_per_client():
+    # but not having a column Order.price
+    result = db.session.query(Customer.name, db.func.sum(Order.price)) \
+        .outerjoin(Order, Customer.id == Order.customer_id) \
+        .group_by(Customer.name).all()
+    print(result)
+
+# get_sum_of_orders_per_client()
