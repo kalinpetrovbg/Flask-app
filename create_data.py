@@ -3,6 +3,8 @@ from app import db
 from db_models import Customer, Order, Product
 from faker import Faker
 
+from sqlalchemy.exc import IntegrityError
+
 fake = Faker()
 
 
@@ -73,6 +75,9 @@ def create_db():
 
 try:
     create_db()
-    print('Database created successfully')
-except Exception:
-    print('Error')
+    print('Database created successfully!')
+except IntegrityError:
+    db.session.rollback()
+    print('Error!')
+
+
